@@ -55,12 +55,8 @@ export class AppService {
 
   try {
       const [responseIDMeli, responseDescription]: any = await Promise.all([
-        axios.get(`https://api.mercadolibre.com/items/${id}`).then(response => response.data).catch(()=>{
-          throw new HttpException('ID not found', 404);}
-        ),
-        axios.get(`https://api.mercadolibre.com/items/${id}/description`).then(response => response.data).catch(()=>{
-          throw new HttpException('ID not found', 404);}
-        )
+        axios.get(`https://api.mercadolibre.com/items/${id}`).then(response => response.data),
+        axios.get(`https://api.mercadolibre.com/items/${id}/description`).then(response => response.data)
       ])
   
       const item: ItemResponse = {
@@ -72,7 +68,7 @@ export class AppService {
           decimals: 50,
         },
         picture: responseIDMeli.thumbnail,
-        condition: responseIDMeli.new,
+        condition: responseIDMeli.condition,
         free_shipping: responseIDMeli?.shipping?.free_shipping,
         sold_quantity: responseIDMeli.sold_quantity,
         description: responseDescription.plain_text,
@@ -83,7 +79,7 @@ export class AppService {
       }
   } catch (error) {
     console.error(error.message)
-    throw error
+    throw new HttpException('ID not found', 404);
   }
   }
 }
