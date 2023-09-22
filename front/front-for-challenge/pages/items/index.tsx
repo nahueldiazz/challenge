@@ -1,4 +1,4 @@
-import { getItems } from '@/services/apiResponse';
+import { getItems } from '@/services/itemsService';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { ItemsResponse } from './types';
@@ -15,7 +15,7 @@ const Items = () => {
 
     useEffect(() => {
     searchItems().then((item)=>{
-        setItems(item.items)
+        setItems(item?.items)
     })
     }, [search])
     

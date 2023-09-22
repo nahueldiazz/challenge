@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getItemDescription } from '@/services/apiResponse';
+import { getItemDescription } from '@/services/itemsService';
 import { DescriptionItemsTypes } from '../types';
 
 const ItemDetail = () => {

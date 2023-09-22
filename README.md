@@ -28,3 +28,41 @@ Si deseas ejecutar la aplicación en modo de producción, primero debes construi
 yarn build
 yarn start
 ```
+
+# Back: Proyecto de Nest
+
+Este es un proyecto de Nest.js que implementa dos endpoints de API:
+
+- `/api/items`: Un endpoint GET que acepta una consulta de búsqueda "q" como cadena para buscar elementos.
+- `/api/items/:id`: Un endpoint GET que acepta un ID de elemento y devuelve el detalle del elemento correspondiente.
+
+
+## Intalacion
+- Instala las dependencias utilizando yarn: 
+```bash
+ yarn install
+```
+
+## Ejecucion 
+```bash
+# development
+$ yarn run start
+
+# watch mode
+$ yarn run start:dev
+
+# production mode
+$ yarn run start:prod
+```
+
+## Endpoinst de API
+
+- GET `/api/items`
+```bash
+http://localhost:8080/api/items?q=tu-busqueda
+```
+
+- GET `/api/items/:id`
+```bash
+http://localhost:8080/api/items/1
+```

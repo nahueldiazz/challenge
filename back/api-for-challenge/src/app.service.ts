@@ -7,18 +7,24 @@ import { ItemResponse } from './entities/item';
 @Injectable()
 export class AppService {
   private readonly author : Author;
-
+  private readonly LIMIT_RESULT: number;
+  private readonly URL_SEARCH: string;
+  private readonly URL_ID_DESCRIPTION: string;
   constructor(){
     this.author = {
       name: 'Nahuel',
       lastname: 'Diaz',
     };
+    this.LIMIT_RESULT = 4;
+    this.URL_SEARCH='https://api.mercadolibre.com/sites/MLA/search';
+    this.URL_ID_DESCRIPTION='https://api.mercadolibre.com/items/';
   }
  async getSearch(search:string) {
    try {   
-    const searchMeli = await axios.get('https://api.mercadolibre.com/sites/MLA/search', {
+    const searchMeli = await axios.get(this.URL_SEARCH, {
       params: {
-        q: search
+        q: search,
+        limit: this.LIMIT_RESULT
        }
      })
      
@@ -27,7 +33,7 @@ export class AppService {
      }
      const categories: string[] = ['Electronics', 'Clothing', 'Books'];
  
-     const items: Item[] = searchMeli.data.results.slice(0,4).map(item => ({
+     const items: Item[] = searchMeli.data.results.map(item => ({
          id: item.id,
          title: item.title,
          price: {
@@ -55,8 +61,8 @@ export class AppService {
 
   try {
       const [responseIDMeli, responseDescription]: any = await Promise.all([
-        axios.get(`https://api.mercadolibre.com/items/${id}`).then(response => response.data),
-        axios.get(`https://api.mercadolibre.com/items/${id}/description`).then(response => response.data)
+        axios.get(`${this.URL_ID_DESCRIPTION}${id}`).then(response => response.data),
+        axios.get(`${this.URL_ID_DESCRIPTION}${id}/description`).then(response => response.data)
       ])
   
       const item: ItemResponse = {
