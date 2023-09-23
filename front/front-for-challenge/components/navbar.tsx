@@ -25,7 +25,7 @@ const Navbar = () => {
               placeholder="Buscar"
               className="bg-white h-10 px-5 pr-10 text-sm focus:outline-none w-full"
             />
-            <button type="submit" className="absolute right-0 top-0 h-full w-12 bg-gray-200">
+            <button type="submit" role='search' name='btn-search' className="absolute right-0 top-0 h-full w-12 bg-gray-200">
             <div className="flex items-center justify-center ">
               <i className="fa fa-search" aria-hidden="true"></i>
               </div>
