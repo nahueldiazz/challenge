@@ -24,7 +24,6 @@ const Items = () => {
   const navigateItemId = (idItem: string) => {
     router.push(`/items/${idItem}`);
   };
-  console.log(categories);
 
   return (
     items?.length > 0 && (
