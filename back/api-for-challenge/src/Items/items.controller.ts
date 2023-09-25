@@ -1,9 +1,9 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ItemsService } from './items.service';
 
 @Controller('api/items')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class ItemsController {
+  constructor(private readonly appService: ItemsService) {}
 
   @Get()
   getSearch(@Query('q') q: string) {

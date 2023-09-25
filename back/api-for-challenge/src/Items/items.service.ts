@@ -4,7 +4,7 @@ import { Author, Item } from './entities/itemsResponse';
 import { ItemResponse } from './entities/item';
 
 @Injectable()
-export class AppService {
+export class ItemsService {
   private readonly author: Author;
   private readonly LIMIT_RESULT: number;
   private readonly URL_SEARCH: string;
